@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
 import Cast from "./cast/Cast";
+import Similar from "../../components/carousels/Similar";
+import Recommendation from "../../components/carousels/Recommendation";
+import VideosSection from "./videosSection/VideosSection";
 
 import "./style.scss";
-import VideosSection from "./videosSection/VideosSection";
 
 const Detail = () => {
   const { mediaType, id } = useParams();
@@ -18,6 +20,8 @@ const Detail = () => {
       <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
       <Cast data={credits?.cast} loading={creditsLoading} />
       <VideosSection data={data} loading={loading} />
+      <Similar mediaType={mediaType} id={id} />
+      <Recommendation mediaType={mediaType} id={id} />
     </div>
   );
 };

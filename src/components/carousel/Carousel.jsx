@@ -15,7 +15,7 @@ import Genres from "../genres/Genres";
 
 import "./style.scss";
 
-const Carousel = ({ data, loading, endpoint }) => {
+const Carousel = ({ data, loading, endpoint, title }) => {
   const carouselContainer = useRef();
   const { url } = useSelector((store) => store.home);
   const navigate = useNavigate();
@@ -47,6 +47,7 @@ const Carousel = ({ data, loading, endpoint }) => {
   return (
     <div className="carousel">
       <ContentWrapper>
+        {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => navigation("left")}
@@ -77,7 +78,9 @@ const Carousel = ({ data, loading, endpoint }) => {
                   <div className="textBlock">
                     <span className="title">{item.title || item.name}</span>
                     <span className="date">
-                      {dayjs(item.release_date).format("MMM D,YYYY")}
+                      {dayjs(item.release_date || item.first_air_date).format(
+                        "MMM D,YYYY"
+                      )}
                     </span>
                   </div>
                 </div>
