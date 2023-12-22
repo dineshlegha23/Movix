@@ -30,7 +30,6 @@ function App() {
       profile: res.images.secure_base_url + "original",
     };
     dispatch(getApiConfiguration(url));
-    console.log(res);
   };
 
   const genreCall = async () => {
